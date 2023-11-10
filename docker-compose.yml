@@ -9,8 +9,6 @@ services:
       - "${APP_CONTAINER_PORT}:80"
     depends_on: 
       - wheelwanderdb
-    volumes:
-      - .:/app  
   
   wheelwanderdb:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
