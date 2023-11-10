@@ -4,9 +4,9 @@ services:
     build:
       context: .
       dockerfile: WheelWander/Dockerfile
-    container_name: wheelwander.netcore
+    container_name: ${APP_CONTAINER_NAME}
     ports:
-      - "5000:80"
+      - "${APP_CONTAINER_PORT}:80"
     depends_on: 
       - wheelwanderdb
     volumes:
@@ -14,12 +14,12 @@ services:
   
   wheelwanderdb:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
-    container_name: wheelwander.db.sqlserver
+    container_name: ${DB_CONTAINER_NAME}
     user: root
     ports:
-      - "1433:1433"
+      - "${DB_CONTAINER_PORT}:1433"
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=wheelPassword1!
+      - SA_PASSWORD=${DB_SA_PASSWORD}
     volumes:
       - .docker/dbdata:/var/opt/mssql/data
