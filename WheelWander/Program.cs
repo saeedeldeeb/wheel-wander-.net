@@ -16,6 +16,7 @@ builder.Services.AddDbContext<WheelWanderDbContext>(options =>
 });
 
 builder.Services.AddDefaultIdentity<IdentityUser>()
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<WheelWanderDbContext>();
 builder.Services.AddSession(); 
 builder.Services.AddRazorPages();

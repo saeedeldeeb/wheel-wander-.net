@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WheelWander.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
         public IActionResult Index()
