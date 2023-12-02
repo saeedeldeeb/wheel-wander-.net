@@ -5,16 +5,18 @@
              style="background:white">
         <span class="brand-text font-weight-light">Wheel Wander</span>
     </a>
-
+    @{
+        var action = this.ViewContext.RouteData.Values["action"] as string;
+    }
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
+                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a asp-controller="Dashboard" asp-action="Index" class="nav-link active">
+                    <a asp-controller="Dashboard" asp-action="Index" class="nav-link @(action == "Index" ? "active" : "")">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -22,7 +24,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Dashboard" asp-action="Users" class="nav-link">
+                    <a asp-controller="Dashboard" asp-action="Users" class="nav-link @(action == "Users" ? "active" : "")">
                         <i class="nav-icon fa fa-users"></i>
                         <p>
                             Users
