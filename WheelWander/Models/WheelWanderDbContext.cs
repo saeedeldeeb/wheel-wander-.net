@@ -33,8 +33,8 @@ public class WheelWanderDbContext : IdentityDbContext
             new IdentityUser
             {
                 Id = saeedId,
-                UserName = "Saeed",
-                NormalizedUserName = "SAEED",
+                UserName = "saeedeldeeb1",
+                NormalizedUserName = "SAEEDELDEEB1",
                 Email = "saeedeldeeb1@gmail.com",
                 NormalizedEmail = "SAEEDELDEEB1@GMAIL.COM",
                 EmailConfirmed = true,
@@ -44,8 +44,8 @@ public class WheelWanderDbContext : IdentityDbContext
             new IdentityUser
             {
                 Id = showmanId,
-                UserName = "Showman",
-                NormalizedUserName = "SHOWMAN",
+                UserName = "showmanAhmed",
+                NormalizedUserName = "SHOWMANAHMED",
                 Email = "showmanAhmed@gmail.com",
                 NormalizedEmail = "SHOWMANAHMED@GMAIL.COM",
                 EmailConfirmed = true,

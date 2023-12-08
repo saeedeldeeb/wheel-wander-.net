@@ -30,6 +30,14 @@ public class UsersController : ControllerBase
         var sortColumnDirection = Request.Form["order[0][dir]"];
 
         var customers = _userManager.Users
+            .Select(m => new
+            {
+                m.Id,
+                m.UserName,
+                m.Email,
+                m.PhoneNumber,
+                m.LockoutEnabled
+            })
             .Where(m =>
             string.IsNullOrEmpty(searchValue) || 
             (m.UserName.Contains(searchValue) || m.Email.Contains(searchValue) ||
