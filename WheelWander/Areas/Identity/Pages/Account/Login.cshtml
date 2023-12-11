@@ -32,7 +32,7 @@
             <p class="login-box-msg">Sign in to start your session</p>
             @if (!ModelState.IsValid)
             {
-                <div class="alert alert-danger">@foreach(var val in ModelState.Keys){@Html.ValidationMessage(val)}</div>
+                <div class="alert alert-danger">@Html.ValidationSummary()</div>
             }
             <form method="post" asp-antiforgery="true">
                 <input type="hidden"/>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" id="password" name="password" class="form-control" value="Sa33d-Deep" placeholder="password">
+                    <input type="password" id="password" name="password" class="form-control" value="Saeed@123" placeholder="password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

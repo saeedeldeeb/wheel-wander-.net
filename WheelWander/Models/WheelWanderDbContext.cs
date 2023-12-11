@@ -13,22 +13,26 @@ public class WheelWanderDbContext : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        var adminId = Guid.NewGuid().ToString();
+        var userId = Guid.NewGuid().ToString();
         builder.Entity<IdentityRole>().HasData(
             new IdentityRole
             {
+                Id = adminId,
                 Name = "Admin",
                 NormalizedName = "ADMIN"
             },
             new IdentityRole
             {
+                Id = userId,
                 Name = "User",
                 NormalizedName = "USER"
             }
         );
 
         // Generate a new random UUID
-        string saeedId = Guid.NewGuid().ToString();
-        string showmanId = Guid.NewGuid().ToString();
+        var saeedId = Guid.NewGuid().ToString();
+        var showmanId = Guid.NewGuid().ToString();
         builder.Entity<IdentityUser>().HasData(
             new IdentityUser
             {
@@ -57,12 +61,12 @@ public class WheelWanderDbContext : IdentityDbContext
         builder.Entity<IdentityUserRole<string>>().HasData(
             new IdentityUserRole<string>
             {
-                RoleId = "1",
+                RoleId = adminId,
                 UserId = saeedId
             },
             new IdentityUserRole<string>
             {
-                RoleId = "2",
+                RoleId = userId,
                 UserId = showmanId
             }
         );
