@@ -13,8 +13,8 @@ namespace WheelWander.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0de8240e-0bfc-492d-9758-d041c1314812", "cbc9140b-09c4-46d6-8680-1c662261310b", "User", "USER" },
-                    { "fcdb4a01-a1be-4d5b-92e4-08b1163f47c7", "91a602d5-1248-41e1-b01d-430c4e568a99", "Admin", "ADMIN" }
+                    { "0de8240e-0bfc-492d-9758-d041c1314812", "678e1b6a-9a0c-4fdd-8bca-130ee693e2ae", "User", "USER" },
+                    { "fcdb4a01-a1be-4d5b-92e4-08b1163f47c7", "217ca5d6-29ce-4c73-8b92-de50c09f97f0", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -22,8 +22,8 @@ namespace WheelWander.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "5c621b1c-a866-4726-8e6a-a170b9c03472", 0, "c04289f8-997d-4af2-ae82-8d8196f3bf36", "showmanAhmed@gmail.com", true, false, null, "SHOWMANAHMED@GMAIL.COM", "SHOWMANAHMED", "AQAAAAEAACcQAAAAEJMV9VCshKszIFsoWcxpczRuoQftB4Cfp/Sb+mGHCBDVV1esSjdXeNpuMVu6KOxgeg==", null, false, "", false, "showmanAhmed" },
-                    { "accd2e8c-8355-4be6-b14d-d92e16529648", 0, "e37426de-151a-4492-8a42-0cb19b5b7759", "saeedeldeeb1@gmail.com", true, false, null, "SAEEDELDEEB1@GMAIL.COM", "SAEEDELDEEB1", "AQAAAAEAACcQAAAAEHGr9U9enKf2md9m8LFTL7y+kRJ/05KfgYGdMtf3rrnlE2TxQB8563gJOhZLGqAV8g==", null, false, "", false, "saeedeldeeb1" }
+                    { "5c621b1c-a866-4726-8e6a-a170b9c03472", 0, "d33e4e53-cb92-411a-bec6-1de8f9463b0c", "showmanAhmed@gmail.com", true, false, null, "SHOWMANAHMED@GMAIL.COM", "SHOWMANAHMED", "AQAAAAEAACcQAAAAEJ3oZqqQplbgosNBFkavHMEJsbc4169BRYbm5jED9IMan/8U7ITr2+JRxWxkmryQCQ==", null, false, "", false, "showmanAhmed" },
+                    { "accd2e8c-8355-4be6-b14d-d92e16529648", 0, "e36d365f-6b85-44a9-9a95-6a4d72e9a586", "saeedeldeeb1@gmail.com", true, false, null, "SAEEDELDEEB1@GMAIL.COM", "SAEEDELDEEB1", "AQAAAAEAACcQAAAAELtwAkdp2tkBKWYD6ed6ldNlmW0at8daYpulpOAozyyqmI4IBLjlmjM71EpoG9IMKg==", null, false, "", false, "saeedeldeeb1" }
                 });
 
             migrationBuilder.InsertData(

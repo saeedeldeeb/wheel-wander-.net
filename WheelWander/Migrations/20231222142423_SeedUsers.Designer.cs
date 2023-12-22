@@ -12,7 +12,7 @@ using WheelWander.Models;
 namespace WheelWander.Migrations
 {
     [DbContext(typeof(WheelWanderDbContext))]
-    [Migration("20231211222156_SeedUsers")]
+    [Migration("20231222142423_SeedUsers")]
     partial class SeedUsers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,14 +54,14 @@ namespace WheelWander.Migrations
                         new
                         {
                             Id = "fcdb4a01-a1be-4d5b-92e4-08b1163f47c7",
-                            ConcurrencyStamp = "91a602d5-1248-41e1-b01d-430c4e568a99",
+                            ConcurrencyStamp = "217ca5d6-29ce-4c73-8b92-de50c09f97f0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "0de8240e-0bfc-492d-9758-d041c1314812",
-                            ConcurrencyStamp = "cbc9140b-09c4-46d6-8680-1c662261310b",
+                            ConcurrencyStamp = "678e1b6a-9a0c-4fdd-8bca-130ee693e2ae",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -161,13 +161,13 @@ namespace WheelWander.Migrations
                         {
                             Id = "accd2e8c-8355-4be6-b14d-d92e16529648",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e37426de-151a-4492-8a42-0cb19b5b7759",
+                            ConcurrencyStamp = "e36d365f-6b85-44a9-9a95-6a4d72e9a586",
                             Email = "saeedeldeeb1@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "SAEEDELDEEB1@GMAIL.COM",
                             NormalizedUserName = "SAEEDELDEEB1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHGr9U9enKf2md9m8LFTL7y+kRJ/05KfgYGdMtf3rrnlE2TxQB8563gJOhZLGqAV8g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELtwAkdp2tkBKWYD6ed6ldNlmW0at8daYpulpOAozyyqmI4IBLjlmjM71EpoG9IMKg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -177,13 +177,13 @@ namespace WheelWander.Migrations
                         {
                             Id = "5c621b1c-a866-4726-8e6a-a170b9c03472",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c04289f8-997d-4af2-ae82-8d8196f3bf36",
+                            ConcurrencyStamp = "d33e4e53-cb92-411a-bec6-1de8f9463b0c",
                             Email = "showmanAhmed@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "SHOWMANAHMED@GMAIL.COM",
                             NormalizedUserName = "SHOWMANAHMED",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJMV9VCshKszIFsoWcxpczRuoQftB4Cfp/Sb+mGHCBDVV1esSjdXeNpuMVu6KOxgeg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ3oZqqQplbgosNBFkavHMEJsbc4169BRYbm5jED9IMan/8U7ITr2+JRxWxkmryQCQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
