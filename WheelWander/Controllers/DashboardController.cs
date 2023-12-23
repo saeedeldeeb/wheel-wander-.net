@@ -19,5 +19,10 @@ namespace WheelWander.Controllers
         {
             return View();
         }
+        
+        public IActionResult Rentals()
+        {
+            return View();
+        }
     }
 }
