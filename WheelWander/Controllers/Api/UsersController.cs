@@ -46,7 +46,7 @@ public class UsersController : ControllerBase
                 m.UserName,
                 m.Email,
                 m.PhoneNumber,
-                m.LockoutEnabled
+                LockoutEnabled = !m.LockoutEnabled
             }).ToList();
 
         var recordsTotal = customers.Count();
