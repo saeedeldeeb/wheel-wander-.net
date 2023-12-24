@@ -30,6 +30,16 @@ public class UsersController : ControllerBase
         var sortColumnDirection = Request.Form["order[0][dir]"];
 
         var customers = _userManager.Users
+            .Where(m =>
+                string.IsNullOrEmpty(searchValue) ||
+                (m.UserName.Contains(searchValue) || m.Email.Contains(searchValue) ||
+                 m.PhoneNumber.Contains(searchValue) || m.Email.Contains(searchValue)));
+
+        if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
+            customers = customers.OrderBy(string.Concat(sortColumn, " ", sortColumnDirection));
+
+        var data = customers.Skip(skip).Take(pageSize).ToList()
+            .Where(u => !_userManager.IsInRoleAsync(u, "Admin").Result)
             .Select(m => new
             {
                 m.Id,
@@ -37,16 +47,7 @@ public class UsersController : ControllerBase
                 m.Email,
                 m.PhoneNumber,
                 m.LockoutEnabled
-            })
-            .Where(m =>
-            string.IsNullOrEmpty(searchValue) || 
-            (m.UserName.Contains(searchValue) || m.Email.Contains(searchValue) ||
-             m.PhoneNumber.Contains(searchValue) || m.Email.Contains(searchValue)));
-
-        if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
-            customers = customers.OrderBy(string.Concat(sortColumn, " ", sortColumnDirection));
-
-        var data = customers.Skip(skip).Take(pageSize).ToList();
+            }).ToList();
 
         var recordsTotal = customers.Count();
 
