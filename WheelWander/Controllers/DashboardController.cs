@@ -24,15 +24,5 @@ namespace WheelWander.Controllers
         {
             return View();
         }
-        
-        // public IActionResult Bikes()
-        // {
-        //     return View();
-        // }
-        
-        public IActionResult Stations()
-        {
-            return View();
-        }
     }
 }
