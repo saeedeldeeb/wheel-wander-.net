@@ -1,3 +1,5 @@
+using NetTopologySuite.Geometries;
+
 namespace WheelWander.Models;
 
 public class Station
@@ -6,7 +8,7 @@ public class Station
     
     public string Name { get; set; }
     
-    public string Location { get; set; }
+    public Point Location { get; set; }
     
     public int Capacity { get; set; }
     
