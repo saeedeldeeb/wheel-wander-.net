@@ -8,7 +8,7 @@ public class Bike
 
     public string Status { get; set; }
     
-    public string CurrentStationId { get; set; }
+    public string? CurrentStationId { get; set; }
 
     public Station CurrentStation { get; set; }
 }

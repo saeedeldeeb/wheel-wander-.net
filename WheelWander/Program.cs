@@ -12,7 +12,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<WheelWanderDbContext>(options =>
 {
     options.UseSqlServer(
-        builder.Configuration["ConnectionStrings:WheelWanderDbContextConnection"]);
+        builder.Configuration["ConnectionStrings:WheelWanderDbContextConnection"],
+        x => x.UseNetTopologySuite());
 });
 
 builder.Services.AddDefaultIdentity<IdentityUser>()

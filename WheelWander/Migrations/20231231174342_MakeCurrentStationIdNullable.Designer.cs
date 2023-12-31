@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using WheelWander.Models;
@@ -12,9 +13,10 @@ using WheelWander.Models;
 namespace WheelWander.Migrations
 {
     [DbContext(typeof(WheelWanderDbContext))]
-    partial class WheelWanderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231231174342_MakeCurrentStationIdNullable")]
+    partial class MakeCurrentStationIdNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -315,6 +317,7 @@ namespace WheelWander.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BikeId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("DeviceNumber")
@@ -468,7 +471,9 @@ namespace WheelWander.Migrations
                 {
                     b.HasOne("WheelWander.Models.Bike", "Bike")
                         .WithMany()
-                        .HasForeignKey("BikeId");
+                        .HasForeignKey("BikeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Bike");
                 });
