@@ -19,7 +19,8 @@ public class StationsController : Controller
     [HttpGet("/stations")]
     public IActionResult GetAll()
     {
-        var stations = _unitOfWork.Stations.FindAll(s => s.Status == Status.Active);
+        var stations = _unitOfWork.Stations
+            .FindAll(s => s.Status == Status.Active, new[] { "Bikes" });
         return View("../Dashboard/Stations", new StationListViewModel(stations));
     }
 }

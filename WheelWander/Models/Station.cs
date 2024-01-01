@@ -12,5 +12,7 @@ public class Station
     
     public int Capacity { get; set; }
     
+    public List<Bike> Bikes { get; set; }
+    
     public string Status { get; set; }
 }
