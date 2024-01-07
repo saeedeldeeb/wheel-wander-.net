@@ -92,6 +92,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Pages\Account\" />
+    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
 </Project>

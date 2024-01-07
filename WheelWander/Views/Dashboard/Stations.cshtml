@@ -2,6 +2,7 @@
     ViewBag.Title = "Stations";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using WheelWander.Consts
 @model WheelWander.ViewModels.Stations.StationListViewModel
 <div>
     <div class="content-wrapper">
@@ -47,17 +48,10 @@
                                         <div class="card">
                                             <div class="card-header">
                                                 <h3 class="card-title">List of System Stations</h3>
-
                                                 <div class="card-tools">
-                                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                                        <div class="input-group-append">
-                                                            <button type="submit" class="btn btn-default">
-                                                                <i class="fas fa-search"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
+                                                    <a class="btn btn-app" type="button" data-toggle="modal" data-target="#modal-lg">
+                                                        <i class="fas fa-plus"></i> Add
+                                                    </a>
                                                 </div>
                                             </div>
                                             <!-- /.card-header -->
@@ -94,8 +88,8 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <img src="https://api.mapbox.com/styles/v1/mapbox/light-v9/static/pin-s+f00(30.055867,51.408365)/30.0558434,51.4082343,15,0,0/640x480?access_token=pk.eyJ1Ijoibmlja2ZpdHoiLCJhIjoiY2p3d2g3N2F5MDZ4azQwcG12dWticDB0diJ9.qnQV5QgYN_eDwg4uUdbO6Q"
-                                                                                     alt="Pripyat Amusement Park" class="static-map"
-                                                                                     style="width: 100%; height: 100%;"/>
+                                             alt="Pripyat Amusement Park" class="static-map"
+                                             style="width: 100%; height: 100%;"/>
                                     </div>
                                 </div>
                             </div>
@@ -103,6 +97,49 @@
                     </div>
                     <!-- /.card -->
                 </div>
+            </div>
+            <div class="modal fade" id="modal-lg">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Station</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card card-primary">
+                                <!-- form start -->
+                                <form asp-controller="Stations" asp-action="Create" method="post" role="form">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="StationNameInput">Station Name</label>
+                                            <input type="text" class="form-control" name="StationName" id="StationNameInput" placeholder="Enter name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="StationCapInput">Station Capacity</label>
+                                            <input type="number" class="form-control" name="StationCapacity" id="StationCapInput" placeholder="Enter Capacity">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="StatusInput">Station Status</label>
+                                            <select class="form-control" name="Status" id="StatusInput">
+                                                <option value="@Status.Active">@Status.Active</option>
+                                                <option value="@Status.Maintenance">@Status.Maintenance</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
             </div>
         </section>
         <!-- /.content -->
