@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WheelWander.Models;
 using Microsoft.AspNetCore.Identity;
+using WheelWander.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("WheelWanderDbContextConnection") ??
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<WheelWanderDbContext>(options =>
         builder.Configuration["ConnectionStrings:WheelWanderDbContextConnection"],
         x => x.UseNetTopologySuite());
 });
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddRoles<IdentityRole>()
