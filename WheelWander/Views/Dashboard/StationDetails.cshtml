@@ -1,0 +1,60 @@
+@{
+    ViewBag.Title = "Station Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model WheelWander.ViewModels.Stations.StationViewModel
+<div>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 th:text="${title}">@Model.StationName</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active">Stations</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="col-12">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-text-width"></i>
+                                Station Details
+                            </h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <dl class="row">
+                                <dt class="col-sm-4">Lat/Lng</dt>
+                                <dd class="col-sm-8">@Model.Location?.X , @Model.Location?.Y</dd>
+                                <dt class="col-sm-4">Status</dt>
+                                <dd class="col-sm-8">@Model.Status</dd>
+                                <dt class="col-sm-4">Number of Racks</dt>
+                                <dd class="col-sm-8">@Model.StationCapacity</dd>
+                                <dt class="col-sm-4">Availability</dt>
+                                <dd class="col-sm-8">@Model.AvailableBikes</dd>
+                            </dl>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+</div>

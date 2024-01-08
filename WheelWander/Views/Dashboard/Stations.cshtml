@@ -63,6 +63,7 @@
                                                         <th>Availability</th>
                                                         <th>State</th>
                                                         <th># of Racks</th>
+                                                        <th>Actions</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -73,6 +74,11 @@
                                                             <td>@station.Bikes.Count()</td>
                                                             <td>@station.Status</td>
                                                             <td>@station.Capacity</td>
+                                                            <td>
+                                                                <a asp-controller="Stations" asp-action="GetById" asp-route-id="@station.Id" class="btn btn-success" type="button">
+                                                                    <i class="fa fa-eye"></i> View
+                                                                </a>
+                                                            </td>
                                                         </tr>
                                                     }
                                                     </tbody>
