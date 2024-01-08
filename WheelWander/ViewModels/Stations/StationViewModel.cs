@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using NetTopologySuite.Geometries;
 
 namespace WheelWander.ViewModels.Stations;
 
@@ -11,4 +12,6 @@ public class StationViewModel
     public int StationCapacity { get; set; }
     [Required(ErrorMessage = "Please Enter Station Status")]
     public string Status { get; set; } = string.Empty;
+    public int AvailableBikes { get; set; }
+    public Point? Location { get; set; } = null;
 }

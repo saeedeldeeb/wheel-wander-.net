@@ -44,4 +44,18 @@ public class StationsController : Controller
 
         return RedirectToAction(nameof(GetAll));
     }
+    
+    [HttpGet("/stations/{id}")]
+    public IActionResult GetById(string id)
+    {
+        var station = _unitOfWork.Stations.Find(s => s.Id == id, new[] { "Bikes" });
+        return View("../Dashboard/StationDetails", new StationViewModel()
+        {
+            StationName = station?.Name ?? string.Empty,
+            StationCapacity = station?.Capacity ?? 0,
+            Status = station?.Status ?? string.Empty,
+            AvailableBikes = station?.Bikes.Count ?? 0,
+            Location = station?.Location
+        });
+    }
 }
