@@ -7,6 +7,7 @@ public interface IUnitOfWork: IDisposable
 {
     IBaseRepository<Station> Stations { get; }
     IBaseRepository<Bike> Bikes { get; }
+    IBaseRepository<Rental> Rentals { get; }
     
     int Complete();
 }
