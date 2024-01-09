@@ -5,6 +5,7 @@ namespace WheelWander.ViewModels.Stations;
 
 public class StationViewModel
 {
+    public string Id { get; set; } = string.Empty;
     [Required(ErrorMessage = "Please Enter Station Name")]
     public string StationName { get; set; } = string.Empty;
     [Required(ErrorMessage = "Please Enter Station Capacity")]

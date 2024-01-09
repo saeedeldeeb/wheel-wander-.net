@@ -2,6 +2,7 @@
     ViewBag.Title = "Station Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using WheelWander.Consts
 @model WheelWander.ViewModels.Stations.StationViewModel
 <div>
     <div class="content-wrapper">
@@ -48,11 +49,64 @@
                                 <dt class="col-sm-4">Availability</dt>
                                 <dd class="col-sm-8">@Model.AvailableBikes</dd>
                             </dl>
+                            <a class="btn btn-dark" type="button" data-toggle="modal" data-target="#modal-lg-edit">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
                         </div>
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
                 </div>
+            </div>
+            <div class="modal fade" id="modal-lg-edit">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Station</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card card-primary">
+                                <!-- form start -->
+                                <form asp-controller="Stations" asp-action="Update" method="post" role="form">
+                                    <div class="card-body">
+                                        <input type="hidden" name="Id" value="@Model.Id"/>
+                                        <div class="form-group">
+                                            <label for="EditStationNameInput">Station Name</label>
+                                            <input type="text" class="form-control" name="StationName" id="EditStationNameInput" value="@Model.StationName" placeholder="Enter name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="EditStationCapInput">Station Capacity</label>
+                                            <input type="number" class="form-control" name="StationCapacity" id="EditStationCapInput" value="@Model.StationCapacity" placeholder="Enter Capacity">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="EditStatusInput">Station Status</label>
+                                            <select class="form-control" name="Status" id="EditStatusInput">
+                                                <!option value="@Status.Active"
+                                                         @(Model.Status == "Active" ? "selected" : "")>
+                                                    @Status.Active
+                                                </!option>
+                                                <!option value="@Status.Maintenance"
+                                                         @(Model.Status == "Maintenance" ? "selected" : "")>
+                                                    @Status.Maintenance
+                                                </!option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
             </div>
         </section>
         <!-- /.content -->
