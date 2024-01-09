@@ -14,7 +14,7 @@ public class Rental
     
     public Station StartStation { get; set; }
     
-    public string EndStationId { get; set; }
+    public string? EndStationId { get; set; }
     
     public Station EndStation { get; set; }
     
@@ -24,7 +24,7 @@ public class Rental
     
     public DateTime StartedAt { get; set; }
     
-    public DateTime EndedAt { get; set; }
+    public DateTime? EndedAt { get; set; }
     
     public string Status { get; set; }
 }
