@@ -11,6 +11,8 @@ public class UnitOfWork: IUnitOfWork
     public IBaseRepository<Station> Stations { get; private set; }
     public IBaseRepository<Bike> Bikes { get; private set; }
     public IBaseRepository<Rental> Rentals { get; private set; }
+    
+    public IBaseRepository<Lock> Locks { get; private set; }
 
     public UnitOfWork(WheelWanderDbContext context)
     {
@@ -18,6 +20,7 @@ public class UnitOfWork: IUnitOfWork
         Stations = new BaseRepository<Station>(_context);
         Bikes = new BaseRepository<Bike>(_context);
         Rentals = new BaseRepository<Rental>(_context);
+        Locks = new BaseRepository<Lock>(_context);
     }
 
     public int Complete()
