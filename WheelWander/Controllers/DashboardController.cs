@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -35,6 +36,18 @@ namespace WheelWander.Controllers
                 .FindAll(r => r.Status == Status.Active || r.Status == Status.Completed,
                     new[] { "Bike", "User", "StartStation", "EndStation" });
             return View(rentals);
+        }
+
+        public IActionResult Bikes()
+        {
+            dynamic model = new ExpandoObject();
+            model.Bikes = _unitOfWork.Bikes
+                .FindAll(b => b.Status == Status.Active || b.Status == Status.Maintenance,
+                    new[] { "CurrentStation" });
+            model.Locks = _unitOfWork.Locks
+                .FindAll(l => l.Status == Status.Active || l.Status == Status.Maintenance,
+                    new[] { "Bike" });
+            return View(model);
         }
     }
 }
