@@ -29,7 +29,7 @@ public class AuthController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("token")]
+    [HttpPost("login")]
     public async Task<IActionResult> GetTokenAsync([FromBody] LoginModel model)
     {
         if (!ModelState.IsValid)
