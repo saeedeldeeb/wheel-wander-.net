@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WheelWander.Helpers;
@@ -12,14 +13,17 @@ namespace WheelWander.Services;
 public class AuthService : IAuthService
 {
     private readonly UserManager<IdentityUser> _userManager;
-    private readonly RoleManager<IdentityRole> _roleManager;
     private readonly JWT _jwt;
+    private readonly ISmsService _smsService;
+    private readonly IMemoryCache _memoryCache;
 
-    public AuthService(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<JWT> jwt)
+    public AuthService(UserManager<IdentityUser> userManager, IOptions<JWT> jwt, ISmsService smsService,
+        IMemoryCache memoryCache)
     {
         _userManager = userManager;
-        _roleManager = roleManager;
         _jwt = jwt.Value;
+        _smsService = smsService;
+        _memoryCache = memoryCache;
     }
 
     public async Task<AuthModel> RegisterAsync(RegisterModel model)
@@ -49,6 +53,13 @@ public class AuthService : IAuthService
         await _userManager.AddToRoleAsync(user, "User");
 
         var jwtSecurityToken = await CreateJwtToken(user);
+
+        var verificationCode = new Random().Next(1000, 9999);
+        var smsResult = _smsService.Send(user.PhoneNumber, $"Your verification code is: {verificationCode}");
+        _memoryCache.Set(user.PhoneNumber, verificationCode, TimeSpan.FromMinutes(5));
+
+        if (!string.IsNullOrEmpty(smsResult.ErrorMessage))
+            return new AuthModel { Message = smsResult.ErrorMessage };
 
         return new AuthModel
         {
@@ -89,6 +100,38 @@ public class AuthService : IAuthService
         authModel.ExpiresOn = jwtSecurityToken.ValidTo;
         authModel.Roles = rolesList.ToList();
 
+        return authModel;
+    }
+
+    public async Task<AuthModel> VerifyPhoneNumberAsync(VerifyPhoneNumberModel model)
+    {
+        var authModel = new AuthModel();
+
+        if (!_memoryCache.TryGetValue(model.PhoneNumber, out int verificationCode))
+        {
+            authModel.Message = "Verification code is expired!";
+            return authModel;
+        }
+
+        if (verificationCode != model.VerificationCode)
+        {
+            authModel.Message = "Verification code is incorrect!";
+            return authModel;
+        }
+
+        var user = await _userManager.FindByEmailAsync(model.Email);
+
+        if (user is null)
+        {
+            authModel.Message = "User not found!";
+            return authModel;
+        }
+
+        user.PhoneNumberConfirmed = true;
+        await _userManager.UpdateAsync(user);
+
+        authModel.Message = "Phone number is confirmed!";
+        authModel.IsAuthenticated = true;
         return authModel;
     }
 

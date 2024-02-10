@@ -42,4 +42,18 @@ public class AuthController : ControllerBase
 
         return Ok(result);
     }
+    
+    [HttpPost("verify")]
+    public async Task<IActionResult> VerifyAsync([FromBody] VerifyPhoneNumberModel model)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var result = await _authService.VerifyPhoneNumberAsync(model);
+
+        if (!result.IsAuthenticated)
+            return BadRequest(result.Message);
+
+        return Ok(result);
+    }
 }

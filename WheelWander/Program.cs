@@ -23,6 +23,9 @@ builder.Services.AddDbContext<WheelWanderDbContext>(options =>
 });
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.Configure<TwilioSettings>(builder.Configuration.GetSection("Twilio"));
+builder.Services.AddTransient<ISmsService, SmsService>();
+builder.Services.AddMemoryCache();
 
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddRoles<IdentityRole>()
