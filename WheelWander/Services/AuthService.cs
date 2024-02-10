@@ -73,6 +73,12 @@ public class AuthService : IAuthService
             return authModel;
         }
 
+        if (!await _userManager.IsPhoneNumberConfirmedAsync(user))
+        {
+            authModel.Message = "Phone number is not confirmed!";
+            return authModel;
+        }
+
         var jwtSecurityToken = await CreateJwtToken(user);
         var rolesList = await _userManager.GetRolesAsync(user);
 
