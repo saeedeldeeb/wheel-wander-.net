@@ -1,0 +1,120 @@
+@{
+    ViewBag.Title = "Station Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using WheelWander.Consts
+@model WheelWander.ViewModels.Bikes.BikeViewModel
+
+<div>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 th:text="${title}">@Model.Id</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active">Bikes</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="col-12">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-text-width"></i>
+                                Bike Details
+                            </h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <dl class="row">
+                                <dt class="col-sm-4">Status</dt>
+                                <dd class="col-sm-8">@Model.status</dd>
+                                <dt class="col-sm-4">Current Station</dt>
+                                <dd class="col-sm-8">@Model.currentStationName</dd>
+                            </dl>
+                            <a class="btn btn-dark" type="button" data-toggle="modal" data-target="#modal-lg-edit">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <div class="modal fade" id="modal-lg-edit">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Station</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card card-primary">
+                                <!-- form start -->
+                                <form asp-controller="Stations" asp-action="Update" method="post" role="form">
+                                    <div class="card-body">
+                                        <input type="hidden" name="Id" value="@Model.Id"/>
+                                        
+                                        
+                                        <div class="form-group">
+                                            <label for="EditStatusInput">Bike Status</label>
+                                            <select class="form-control" name="Status" id="EditStatusInput">
+                                                <!option value="@Status.Active"
+                                                         @(Model.status == "Active" ? "selected" : "")>
+                                                    @Status.Active
+                                                </!option>
+                                                <!option value="@Status.Maintenance"
+                                                         @(Model.status == "Maintenance" ? "selected" : "")>
+                                                    @Status.Maintenance
+                                                </!option>
+                                            </select>
+                                        </div>
+                                                                              <div class="form-group">
+                                                                                 <label for="StationId">Select Station</label>
+                                                                                 <select class="form-control" name="SelectedStationId" id="StationId">
+                                                                                     ح          <option value="">-- Select Station --</option>
+                                                                                     @foreach (var station in Model.Stations)
+                                                                                     {
+                                                                                         <!option value="@station.Value"
+                                                                                                  @(station.Value == Model.currentStationId ? "selected" : "")>
+                                                                                             @station.Text
+                                                                                         </!option>  
+                                                                                                  
+                                                                                                 
+                                                                                     }
+                                                                                 </select>
+                                                                                 </div>
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+</div>

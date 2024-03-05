@@ -29,4 +29,13 @@ public class BikesController :Controller
         
         return View("../Dashboard/Bikes", new BikesViewModel(model));
     }
+
+    [HttpGet("/bikes/{id}")]
+
+    public IActionResult GetById(string id)
+    {
+        var bike = _unitOfWork.Bikes.Find(b => b.Id == id, new []{"CurrentStation"});
+        var stations = _unitOfWork.Stations.GetAll().ToList();
+        return View("../Dashboard/BikeDetails", new BikeViewModel(bike, stations));
+    }
 }
