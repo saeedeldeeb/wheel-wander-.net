@@ -37,17 +37,6 @@ namespace WheelWander.Controllers
                     new[] { "Bike", "User", "StartStation", "EndStation" });
             return View(rentals);
         }
-
-        public IActionResult Bikes()
-        {
-            dynamic model = new ExpandoObject();
-            model.Bikes = _unitOfWork.Bikes
-                .FindAll(b => b.Status == Status.Active || b.Status == Status.Maintenance,
-                    new[] { "CurrentStation" });
-            model.Locks = _unitOfWork.Locks
-                .FindAll(l => l.Status == Status.Active || l.Status == Status.Maintenance,
-                    new[] { "Bike" });
-            return View(model);
-        }
+        
     }
 }
