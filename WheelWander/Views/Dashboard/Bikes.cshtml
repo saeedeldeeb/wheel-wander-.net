@@ -56,6 +56,7 @@
                                             <tr>
                                                 <th>Bike #</th>
                                                 <th>Status</th>
+                                                <th>Bike Number</th>
                                                 <th>Current Station</th>
                                                 <th>Actions</th>
                                             </tr>
@@ -66,6 +67,7 @@
                                                 <tr>
                                                     <td>@bike.BikeNumber</td>
                                                     <td>@bike.Status</td>
+                                                    <td>@bike.BikeNumber</td>
                                                     <td>@bike.CurrentStation?.Name</td>
                                                     <td>
                                                           <a asp-controller="Bikes" asp-action="GetById" asp-route-id="@bike.Id" class="btn btn-success" type="button">

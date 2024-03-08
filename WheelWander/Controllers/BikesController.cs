@@ -1,8 +1,10 @@
 using System.Dynamic;
+using System.Security.Cryptography.Pkcs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WheelWander.Repositories;
 using WheelWander.Consts;
+using WheelWander.Models;
 using WheelWander.ViewModels.Bikes;
 
 namespace WheelWander.Controllers;
@@ -37,5 +39,24 @@ public class BikesController :Controller
         var bike = _unitOfWork.Bikes.Find(b => b.Id == id, new []{"CurrentStation"});
         var stations = _unitOfWork.Stations.GetAll().ToList();
         return View("../Dashboard/BikeDetails", new BikeViewModel(bike, stations));
+    }
+    [HttpPost("/bikes/update")]
+    public IActionResult Update(CreateUpdateBikeViewModel bike)
+    {
+       // return Json(ModelState); 
+        if (ModelState.IsValid)
+        {
+            _unitOfWork.Bikes.Update(new Bike()
+            {
+                Id = bike.Id,
+                Status = bike.status,
+                CurrentStationId = bike.currentStationId,
+                BikeNumber = bike.bikeNumber
+              
+            });
+            _unitOfWork.Complete();
+        }
+
+        return RedirectToAction(nameof(List));
     }
 }
