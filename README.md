@@ -1,7 +1,7 @@
 # Wheel Wander
 
 ## Description
-Wheel Wander is a bike rental system developed using C# and JavaScript. The system allows users to rent bikes from various stations and return them when they're done. The system is managed by an admin who can add, update, and view details of stations.
+Wheel Wander is a bike rental system developed using C# and JavaScript. The system allows users to rent bikes from various stations and return them when they're done. The system is managed by an admin who can add, update, and view details of System.
 
 ## Features
 - User authentication and authorization
