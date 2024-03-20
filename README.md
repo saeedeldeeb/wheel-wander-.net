@@ -12,7 +12,7 @@ Wheel Wander is a bike rental system developed using C# and JavaScript. The syst
 ## Installation
 Clone the repository to your local machine:
 
-git clone https://github.com/saeedeldeeb/WheelWander.git
+git clone https://github.com/saeedeldeeb/wheel-wander-.net.git
 
 ### Docker Compose
 Navigate to the project directory:
@@ -36,4 +36,4 @@ To run the application, use the following command:
 
 `dotnet run`
 
-The application will be accessible at `http://localhost:5000`.
+The application will be accessible at `http://localhost:7028`.
