@@ -8,8 +8,7 @@ using WheelWander.Consts;
 using WheelWander.Repositories;
 using Newtonsoft.Json;
 
-namespace WheelWander.Controllers.Api
-{
+namespace WheelWander.Controllers.Api;
 
 [Route("api/stations")]
 [ApiController]
@@ -27,7 +26,7 @@ namespace WheelWander.Controllers.Api
     {
         var stations = _unitOfWork.Stations
               .FindAll(s => s.Status == Status.Active);
-      var jsonSettings = new JsonSerializerSettings
+        var jsonSettings = new JsonSerializerSettings
         {
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
         };
@@ -39,5 +38,4 @@ namespace WheelWander.Controllers.Api
     }
         
 
-    }
 }

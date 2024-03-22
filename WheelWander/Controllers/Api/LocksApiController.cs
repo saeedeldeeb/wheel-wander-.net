@@ -8,9 +8,8 @@ using WheelWander.Consts;
 using WheelWander.Repositories;
 using Newtonsoft.Json;
 
-namespace WheelWander.Controllers.Api
-{
-   [ Route("api/locks")]
+namespace WheelWander.Controllers.Api;
+   [Route("api/locks")]
    [ApiController]
    [Authorize(Roles ="User")]
 
@@ -20,9 +19,9 @@ namespace WheelWander.Controllers.Api
 
          public LocksApiController(IUnitOfWork unitOfWork){
             _unitOfWork=unitOfWork;
-         }
-         [HttpGet]
-     public async Task<IActionResult> List()
+    }
+    [HttpGet]
+    public async Task<IActionResult> List()
     {
         var stations = await _unitOfWork.Locks
               .FindAllAsync(s => s.Status == Status.Active);
@@ -35,7 +34,6 @@ namespace WheelWander.Controllers.Api
 
         return Content(json, "application/json");
        
-    }
         
     }
 }
