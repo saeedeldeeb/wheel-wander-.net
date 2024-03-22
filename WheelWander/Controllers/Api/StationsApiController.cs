@@ -13,19 +13,20 @@ namespace WheelWander.Controllers.Api;
 [Route("api/stations")]
 [ApiController]
 [Authorize(Roles = "User")]
-    public class StationsApiController: ControllerBase
-    {
-     private readonly IUnitOfWork _unitOfWork;
+public class StationsApiController : ControllerBase
+{
+    private readonly IUnitOfWork _unitOfWork;
 
     public StationsApiController(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
+
     [HttpGet]
     public IActionResult List()
     {
         var stations = _unitOfWork.Stations
-              .FindAll(s => s.Status == Status.Active);
+            .FindAll(s => s.Status == Status.Active);
         var jsonSettings = new JsonSerializerSettings
         {
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -33,9 +34,6 @@ namespace WheelWander.Controllers.Api;
 
         var json = JsonConvert.SerializeObject(stations, jsonSettings);
 
-
         return Content(json, "application/json");
     }
-        
-
 }

@@ -9,22 +9,24 @@ using WheelWander.Repositories;
 using Newtonsoft.Json;
 
 namespace WheelWander.Controllers.Api;
-   [Route("api/locks")]
-   [ApiController]
-   [Authorize(Roles ="User")]
 
-    public class LocksApiController: ControllerBase
+[Route("api/locks")]
+[ApiController]
+[Authorize(Roles = "User")]
+public class LocksApiController : ControllerBase
+{
+    private readonly IUnitOfWork _unitOfWork;
+
+    public LocksApiController(IUnitOfWork unitOfWork)
     {
-         private readonly IUnitOfWork _unitOfWork;
-
-         public LocksApiController(IUnitOfWork unitOfWork){
-            _unitOfWork=unitOfWork;
+        _unitOfWork = unitOfWork;
     }
+
     [HttpGet]
     public async Task<IActionResult> List()
     {
         var stations = await _unitOfWork.Locks
-              .FindAllAsync(s => s.Status == Status.Active);
+            .FindAllAsync(s => s.Status == Status.Active);
         var jsonSettings = new JsonSerializerSettings
         {
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -33,7 +35,5 @@ namespace WheelWander.Controllers.Api;
         var json = JsonConvert.SerializeObject(stations, jsonSettings);
 
         return Content(json, "application/json");
-       
-        
     }
 }
