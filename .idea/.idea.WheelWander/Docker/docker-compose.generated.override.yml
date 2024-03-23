@@ -1,0 +1,23 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.9"
+services:
+  wheelwander:
+    build:
+      context: "/media/eldeeb/HDD12/MyOwnProjects/Movatic-Egypt/wheel-wander-.net"
+      dockerfile: "WheelWander/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net6.0/WheelWander.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net6.0/WheelWander.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "wheelwander:dev"
+    ports: []
+    volumes:
+    - "/home/eldeeb/.nuget/packages:/root/.nuget/packages"
+    - "/media/eldeeb/HDD12/MyOwnProjects/Movatic-Egypt/wheel-wander-.net/WheelWander:/app:rw"
+    - "/media/eldeeb/HDD12/MyOwnProjects/Movatic-Egypt/wheel-wander-.net:/src:rw"
+    working_dir: "/app"
